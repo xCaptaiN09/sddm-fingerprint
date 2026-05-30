@@ -25,7 +25,7 @@ content = content.replace(
 )
 content = content.replace(
     '    void Display::slotAuthenticationFinished(const QString &user, bool success) {\n        if (m_auth->autologin() && !success) {',
-    '    void Display::slotAuthenticationFinished(const QString &user, bool success) {\n        m_fingerprintAuthActive = false;\n        if (m_auth->autologin() && !success) {'
+    '    void Display::slotAuthenticationFinished(const QString &user, bool success) {\n        m_fingerprintAuthActive = false;\n        if (!success && !m_auth->autologin()) { fingerprintLogin(); }\n        if (m_auth->autologin() && !success) {'
 )
 with open('src/daemon/Display.cpp', 'w') as f:
     f.write(content)
