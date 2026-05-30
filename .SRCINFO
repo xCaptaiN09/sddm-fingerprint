@@ -1,7 +1,7 @@
 pkgbase = sddm-fingerprint
 	pkgdesc = SDDM with fingerprint + password parallel authentication (PR#1220 + parallel auth fix)
 	pkgver = 0.21.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/sddm/sddm
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -37,7 +37,7 @@ pkgbase = sddm-fingerprint
 	backup = etc/pam.d/sddm-fingerprint
 	source = git+https://github.com/sddm/sddm#tag=v0.21.0
 	source = pr1220-fingerprint.patch::https://patch-diff.githubusercontent.com/raw/sddm/sddm/pull/1220.patch
-	source = parallel-auth-fix.patch
+	source = parallel-auth-fix.py
 	sha256sums = 67394c93f331fc02f89559f68e149a992efaed07690f548e6a83ec384ebb8000
 	sha256sums = SKIP
 	sha256sums = SKIP

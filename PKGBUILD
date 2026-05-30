@@ -3,12 +3,10 @@
 # Patches applied:
 #   1. Sasasu/PR#1220 - Fingerprint background polling (https://github.com/sddm/sddm/pull/1220)
 #   2. xCaptaiN09 - Parallel auth fix: stop fingerprint on password submit, 300ms termination timeout
-#
-# Based on official sddm PKGBUILD by Felix Yan and Antonio Rojas
 
 pkgname=sddm-fingerprint
 pkgver=0.21.0
-pkgrel=1
+pkgrel=2
 pkgdesc='SDDM with fingerprint + password parallel authentication (PR#1220 + parallel auth fix)'
 arch=(x86_64)
 url='https://github.com/sddm/sddm'
@@ -22,7 +20,7 @@ backup=('usr/share/sddm/scripts/Xsetup' 'usr/share/sddm/scripts/Xstop' 'etc/pam.
 source=(
     "git+https://github.com/sddm/sddm#tag=v$pkgver"
     "pr1220-fingerprint.patch::https://patch-diff.githubusercontent.com/raw/sddm/sddm/pull/1220.patch"
-    "parallel-auth-fix.patch"
+    "parallel-auth-fix.py"
 )
 sha256sums=('67394c93f331fc02f89559f68e149a992efaed07690f548e6a83ec384ebb8000' 'SKIP' 'SKIP')
 
@@ -30,7 +28,7 @@ prepare() {
     cd sddm
     git cherry-pick -n 228778c2b4b7e26db1e1d69fe484ed75c5791c3a
     patch -Np1 -i "$srcdir/pr1220-fingerprint.patch" --fuzz=3 || true
-    patch -Np1 -i "$srcdir/parallel-auth-fix.patch"
+    python3 "$srcdir/parallel-auth-fix.py"
 }
 
 build() {
